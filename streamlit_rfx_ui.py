@@ -1,9 +1,6 @@
 import streamlit as st
 import json
 import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 import requests
 import io
 import tempfile
@@ -11,13 +8,7 @@ import os
 from datetime import datetime
 import time
 
-# Import your existing functions (you'll need to package these properly)
-# from File_Reader_Function import File_Reader
-# from Multi_Vendor_Reader import Multi_Vendor_Reader
-# from Sxoring_Engine import Sxoring_Engine
-# from MCP_LocalIndustryKB import get_industry_context_hybrid
-
-# For demo purposes, I'll create mock functions
+# Mock functions for demo
 def mock_file_reader(rfp_url):
     return {
         "rfp_text": "Enterprise Network RFP - Requirements for secure, scalable network infrastructure...",
@@ -449,19 +440,18 @@ elif st.session_state.current_step == 4:
         if 'scoring_results' in st.session_state.assessment_data:
             results = st.session_state.assessment_data['scoring_results']
             
-            # Create comparison chart
+            # Create simple bar chart using Streamlit's built-in chart
             vendor_names = [v['vendor_name'] for v in results['vendor_scores']]
             scores = [v['total_score'] for v in results['vendor_scores']]
             
-            fig = px.bar(
-                x=vendor_names,
-                y=scores,
-                title="Vendor Comparison",
-                color=scores,
-                color_continuous_scale="viridis"
-            )
-            fig.update_layout(height=300)
-            st.plotly_chart(fig, use_container_width=True)
+            # Create DataFrame for chart
+            chart_data = pd.DataFrame({
+                'Vendor': vendor_names,
+                'Score': scores
+            })
+            
+            st.subheader("Vendor Comparison")
+            st.bar_chart(chart_data.set_index('Vendor'))
             
             # Score breakdown
             for vendor in results['vendor_scores']:
