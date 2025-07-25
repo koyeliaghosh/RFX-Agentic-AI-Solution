@@ -90,7 +90,7 @@ def mock_executive_summary(scoring_results, industry_context):
 
 # Streamlit App Configuration
 st.set_page_config(
-    page_title="RFX Proposal Assessment",
+    page_title="Agentic RFX Orchestrator",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
