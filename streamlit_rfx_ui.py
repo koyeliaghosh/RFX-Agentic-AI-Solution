@@ -139,7 +139,7 @@ st.markdown("""
 # Header
 st.markdown("""
 <div class="main-header">
-    <h1>🏢 RFX Proposal Assessment Automation</h1>
+    <h1>🏢 Agentic RFX Orchestrator </h1>
     <p>Powered by Azure AI Foundry & PromptFlow</p>
 </div>
 """, unsafe_allow_html=True)
